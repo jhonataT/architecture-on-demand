@@ -6,7 +6,7 @@ export const PrivateRouter = ({ Component, ...props }) => {
     const isUserLogged = false;
 
     if(!isUserLogged) {
-        return <Navigate to='authentication/login' />
+        return <Navigate to='/authentication/login' />
     }
 
     return <main>
