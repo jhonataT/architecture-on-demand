@@ -1,0 +1,101 @@
+.header__container {
+    width: 100vw;
+    height: 5rem;
+    
+    border-bottom: 1px solid var(--white-100);
+
+    .header-content__container {
+        max-width: 1120px;
+        height: 100%;
+
+        margin: 0 auto;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        ul {
+            height: 100%;
+            display: flex;
+
+            li {
+                height: 100%;
+                list-style-type: none;
+
+                display: flex;
+                align-items: center;
+
+                position: relative;
+
+                cursor: pointer;
+
+                
+                a {
+                    transition: opacity .2s;
+                }
+
+                &.warning a {
+                    color: var(--orange-700);
+                    opacity: .5;
+                }
+
+                &.active::after {
+                    content: '';
+                    height: 3px;
+                    width: 100%;
+
+                    position: absolute;
+                    bottom: 0;
+
+                    border-radius: var(--radius-md) var(--radius-md) 0 0;
+
+                    background-color: var(--orange-700);
+                }
+
+                & + li {
+                    margin-left: 1.625rem;
+                }
+
+                & a:hover {
+                    opacity: .7;
+                }
+            }
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            small {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                font-weight: 500;
+    
+                span:first-child {
+                    font-size: 1rem;
+                }
+    
+                span:last-child {
+                    font-size: 0.75rem;
+                    color: var(--blue-200);
+                } 
+            }
+
+            button {
+                background-color: transparent;
+                border: 0;
+
+                font-size: 1.2rem;
+                color: var(--orange-700);
+
+                transition: opacity .2s;
+
+                &:hover {
+                    opacity: .8;
+                }
+            }
+        }
+    }
+}
