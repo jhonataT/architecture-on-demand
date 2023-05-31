@@ -1,0 +1,25 @@
+.input__container {
+    display: flex;
+    flex-direction: column;
+
+    input {
+        width: 20rem;
+        height: 2.5rem;
+
+        background-color: var(--white-100);
+
+        border-radius: var(--radius-md);
+        border: 0;
+        border-bottom: 2px solid var(--green-500);
+
+        padding: 0 .5rem;
+
+        font-size: .75rem;
+        font-weight: 400;
+        color: var(--white-900);
+
+        &::placeholder {
+            color: var(--white-400);
+        }
+    }
+}

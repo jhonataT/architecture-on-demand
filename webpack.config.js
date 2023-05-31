@@ -14,9 +14,6 @@ module.exports = {
     resolve: {
         extensions: ['.js','.jsx']
     },
-    devServer: {
-        static: path.resolve(__dirname, 'public')
-    },
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'public', 'index.html')
@@ -30,13 +27,14 @@ module.exports = {
                 use: 'babel-loader'
             },
             {
-                test: /\.scss$/,
+                test: /\.(scss)$/,
                 exclude: /node_modules/,
                 use: ['style-loader', 'css-loader', 'sass-loader']
             }
         ]
     },
     devServer: {
+        static: path.resolve(__dirname, 'public'),
         historyApiFallback: true,
         port: 3001,
     }
