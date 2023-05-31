@@ -1,3 +1,4 @@
+import { AuthCard } from '../../components/AuthCard';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 import { OutlineLink } from '../../components/OutlineLink';
@@ -5,8 +6,8 @@ import './styles.scss';
 
 export const LoginScreen = ({ handleChange, handleSignInSubmit }) => {
     return <main className='login__container'>
-        <section className='login-form__container'>
-                <h1>Login</h1>
+        <AuthCard>
+            <h1>Login</h1>
             <form onSubmit={handleSignInSubmit}>
                 <Input
                     title='Email'
@@ -22,6 +23,6 @@ export const LoginScreen = ({ handleChange, handleSignInSubmit }) => {
                 <Button label='Entrar' type='submit'/>
                 <OutlineLink to='/authentication/register' label='Criar uma conta'/>
             </form>
-        </section>
+        </AuthCard>
     </main>
 }
