@@ -1,5 +1,8 @@
+import { Header } from './components/Header';
 import './styles/global.scss';
 
 export const App = () => {
-    return <h1>Hello</h1>
+    return <main>
+        <Header/>
+    </main>
 }
