@@ -4,13 +4,13 @@ import './styles.scss';
 export const Header = ({ userType = 'architect', username = 'Jhonata' }) => {
     const headerContent = {
         architect: [
-            { label: 'Novos Serviços', to: '/architect/services/new' },
+            { label: 'Novos Serviços', to: '/architect/list' },
             { label: 'Meus Serviços', to: '/architect/services' },
             { label: 'Recusados', to: '/architect/services/refused' },
             { label: 'Excluídos', to: '/architect/services/excluded', hasWarning: true },
         ],
         client: [
-            { label: 'Arquitetos Disponíveis', to: '/client/architects' },
+            { label: 'Arquitetos Disponíveis', to: '/client' },
             { label: 'Solicitações', to: '/client/requests' },
         ]
     };

@@ -4,11 +4,12 @@ import { userRoutes } from "./routes";
 import { PrivateRouter } from "./routes/privateRoutes";
 import { LoginContainer } from "./container/LoginContainer";
 import { RegistrationContainer } from "./container/RegistrationContainer";
+import { ReduxProvider } from "./core/redux";
 import "!style-loader!css-loader!react-toastify/dist/ReactToastify.css"
 import './styles/global.scss';
 
 export const App = () => {
-    return <>
+    return <ReduxProvider>
         <ToastContainer />
         <Router history={History}>
             <Routes>
@@ -30,5 +31,5 @@ export const App = () => {
                 <Route path="/authentication/register" element={<RegistrationContainer />} />
             </Routes>
         </Router>
-    </>
+    </ReduxProvider>
 }

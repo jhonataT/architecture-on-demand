@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { LoginScreen } from "../../screens/LoginScreen";
 import { formLoginValidation } from "../../core/utils/validation/login";
+import { useLoggedUser } from "../../core/hooks/useLoggedUser";
 
 export const LoginContainer = () => {
     const [loginValues, setLoginValues] = useState();
+    const { doLogin } = useLoggedUser()
 
     const handleChange = (inputName, event) => {
         setLoginValues({
@@ -19,6 +21,9 @@ export const LoginContainer = () => {
         if(!formLoginValidation(loginValues)) {
             return;
         }
+
+        // logging in
+        await doLogin(loginValues)
     }
 
     return <LoginScreen {...{ handleChange, handleSignInSubmit }}/>

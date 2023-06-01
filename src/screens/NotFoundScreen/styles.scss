@@ -1,0 +1,22 @@
+.not-found__container {
+    height: calc(100vh - 5rem);
+    width: 100%;
+
+    
+    div {
+        height: 100%;
+        width: 100%;
+        
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        h1 {
+            font-size: 6rem;
+            color: var(--orange-700);
+        }
+
+    }
+
+}
