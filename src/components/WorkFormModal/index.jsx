@@ -7,12 +7,14 @@ import './styles.scss';
 
 export const WorkFormModal = ({
     isNewRequest = true,
+    disabledSuccessButton = false,
     isOpen,
     handleClose,
     handleSuccess,
     handleInputChange,
     architect,
-    client
+    client,
+    description
 }) => {
     return <Modal
         appElement={document.getElementById('root')}
@@ -40,6 +42,8 @@ export const WorkFormModal = ({
                     title='Descrição do serviço'
                     placeholder='Informe a descrição do serviço que deseja solicitar'
                     handleChange={(e) => handleInputChange('description', e)}
+                    disabled={!isNewRequest}
+                    value={description}
                 />
             </form>
         </div>
@@ -54,6 +58,7 @@ export const WorkFormModal = ({
                 label={isNewRequest ? 'Finalizar' : 'Aceitar'}
                 Icon={RiSendPlaneFill}
                 handleClick={handleSuccess}
+                disabled={disabledSuccessButton}
                 size='md'
             />
         </footer>

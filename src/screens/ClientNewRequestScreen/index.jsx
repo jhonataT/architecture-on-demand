@@ -1,7 +1,7 @@
 import { ActionButton } from '../../components/ActionButton';
 import { ActionsModal } from '../../components/ActionsModal';
 import { MdMiscellaneousServices } from 'react-icons/md';
-import { Table } from '../../components/table';
+import { Table } from '../../components/Table';
 import { WorkFormModal } from '../../components/WorkFormModal';
 import './styles.scss';
 

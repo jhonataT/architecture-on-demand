@@ -16,6 +16,7 @@ const props = {
 
 export const Table = ({ data, title, handleClickActions }) => {
     const actionColumn = ({ data }) => {
+        console.log('data', data)
         return <div
             className='actions__container'
             onClick={() => handleClickActions(data)}
