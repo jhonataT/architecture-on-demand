@@ -7,7 +7,12 @@ export const Select = ({ title, name, handleChangeSelect, options }) => {
             <option value='0' disabled>Selecione uma opção</option>
             {
                 Array.isArray(options) && options.map(option => (
-                    <option key={option.value} value={option.value}>{option?.label}</option>
+                    <option
+                        key={`${option.value}${Math.random()}`}
+                        value={option.value
+                    }>
+                        {option?.label}
+                    </option>
                 ))
             }
         </select>

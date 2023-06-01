@@ -17,7 +17,7 @@ export const formRegisterValidation = (values, userType = 'client') => {
     } else if (Number(values?.age) <= 0 || Number(values?.age) > 120) {
         customToast('Informe a idade correta', 'error');
         return false;
-    } else if (userType === 'architect' && !values?.CAU) {
+    } else if (userType === 'architect' && !values?.cau) {
         customToast('Informe o seu registo de Arquitetura e Urbanismo (CAU)', 'error');
         return false;
     }
