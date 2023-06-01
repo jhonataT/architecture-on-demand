@@ -1,7 +1,10 @@
 import { MdOutlineLogout } from 'react-icons/md';
+import { useLoggedUser } from '../../core/hooks/useLoggedUser';
 import './styles.scss';
 
 export const Header = ({ userType = 'architect', username = 'Jhonata' }) => {
+    const { logOut } = useLoggedUser();
+    
     const headerContent = {
         architect: [
             { label: 'Novos Serviços', to: '/architect/list' },
@@ -31,7 +34,7 @@ export const Header = ({ userType = 'architect', username = 'Jhonata' }) => {
                     <span>{username || 'Usuário'}</span>
                     <span>{userType === 'architect' ? 'Arquiteto' : 'Cliente'}</span>
                 </small>
-                <button>
+                <button onClick={logOut}>
                     <MdOutlineLogout/>
                 </button>
             </div>

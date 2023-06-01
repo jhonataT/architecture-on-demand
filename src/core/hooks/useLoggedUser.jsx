@@ -12,14 +12,11 @@ export const useLoggedUser = () => {
 
     const doLogin = async (userData) => {
         try {
-            const response = await Api.post('/auth/login', userData);
-
-            let newToken = response?.data?.token;
+            const response = await Api().post('/auth/login', userData);
+            const newToken = response?.data?.token;
 
             if(newToken) {
-                const result = await Api.get('/auth/profile', {
-                    headers: { Authorization: `Bearer ${newToken}` }
-                });
+                const result = await Api(newToken).get('/auth/profile');
 
                 dispatch(updateApp({ 
                     loggedUser: result?.data,

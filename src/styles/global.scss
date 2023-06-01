@@ -11,7 +11,6 @@
 
     --orange-700: #f37055;
 
-
     --blue-200: #7f8ca0;
     --blue-400: #6e87bb;
     --blue-500: #5073b8;
@@ -40,6 +39,8 @@
 body {
     width: 100vw;
     height: 100vh;
+
+    overflow-x: hidden;
 
     background-color: var(--blue-900);
 
