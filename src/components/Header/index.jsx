@@ -1,3 +1,4 @@
+import { useMatch } from 'react-router-dom';
 import { MdOutlineLogout } from 'react-icons/md';
 import { useLoggedUser } from '../../core/hooks/useLoggedUser';
 import './styles.scss';
@@ -23,7 +24,10 @@ export const Header = ({ userType = 'architect', username = 'Jhonata' }) => {
             <ul>
                 {
                     headerContent[userType] && headerContent[userType].map((content, index) => (
-                        <li key={content.label} className={`${index === 0 ? 'active': ''}${content?.hasWarning ? 'warning' : ''}`}>
+                        <li
+                            key={content.label}
+                            className={`${useMatch(content.to) ? 'active': ''}${content?.hasWarning ? 'warning' : ''}`}
+                        >
                             <a href={content.to}>{content.label}</a>
                         </li>
                     ))
