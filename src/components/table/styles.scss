@@ -6,10 +6,12 @@
     gap: 1rem;
     flex-direction: column;
 
+    position: relative;
+    z-index: 0;
 
     .table__content {
         width: 100%;
-        height: 30rem;
+        max-height: 30rem;
     }
 }
 
@@ -20,7 +22,7 @@
     border: none !important;
 }
 .rgt-search-input {
-    background-color: var(--white-900) !important;
+    background-color: var(--white-100) !important;
     border-radius: var(--radius-md) !important;
 }
 
@@ -35,6 +37,10 @@
 .rgt-columns-manager-popover {
     background-color: var(--blue-700) !important;
     color: var(--white-900) !important;
+}
+
+.rgt-container {
+    background-color: var(--blue-700) !important;
 }
 
 .rgt-wrapper,

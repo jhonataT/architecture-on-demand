@@ -6,6 +6,7 @@ export const Input = ({ title, handleChange, ...props }) => {
         <input
             {...props}
             onChange={handleChange}
+            className={props.disabled ? ' disabled' : ''}
         />
     </div>
 }

@@ -14,9 +14,14 @@ const props = {
     columnVisibility: 'Visibilidade da coluna'
 }
 
-export const Table = ({ data, title }) => {
-    const actionColumn = ({ value, data, column }) => {
-        return <div className='actions__container'>Ações</div>
+export const Table = ({ data, title, handleClickActions }) => {
+    const actionColumn = ({ data }) => {
+        return <div
+            className='actions__container'
+            onClick={() => handleClickActions(data)}
+        >
+            Ações
+        </div>
     }
     
     const getColumns = (data) => {
@@ -44,11 +49,15 @@ export const Table = ({ data, title }) => {
             <h1>{title}</h1>
         </header>
         <div className='table__content'>
-            <GridTable
-                texts={props}
-                columns={data.length ? getColumns(data) : []}
-                rows={data}
-            />
+            {
+                (data && data.length) ? (
+                    <GridTable
+                        texts={props}
+                        columns={(data && data.length) ? getColumns(data) : []}
+                        rows={data}
+                    />
+                ) : <></>
+            }
         </div>
     </div>
 }

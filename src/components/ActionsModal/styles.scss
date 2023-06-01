@@ -1,0 +1,18 @@
+.actions-modal__container {
+    width: 100%;
+    // height: 40rem;
+    max-width: 420px;
+
+    margin: 7rem auto;
+    
+    background-color: var(--blue-700);
+
+    border: 0;
+    border-radius: var(--radius-md);
+
+    padding: 2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
