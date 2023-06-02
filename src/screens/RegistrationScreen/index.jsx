@@ -1,4 +1,5 @@
 import { AuthCard } from '../../components/AuthCard';
+import { ProjectDescriptionCard } from '../../components/ProjectDescriptionCard';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 import { OutlineLink } from '../../components/OutlineLink';
@@ -8,6 +9,7 @@ import './styles.scss';
 
 export const RegistrationScreen = ({ currentUserType, registerInputValues, handleRegisterSubmit, handleChangeUserType, handleChangeInputValues }) => {
     return <main className='register__container'>
+        <ProjectDescriptionCard/>
         <AuthCard>
             <h1>Cadastro</h1>
             <div className='user-type-button__container'>

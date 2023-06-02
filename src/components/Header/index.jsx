@@ -26,7 +26,7 @@ export const Header = ({ userType = 'architect', username = 'Jhonata' }) => {
                     headerContent[userType] && headerContent[userType].map((content, index) => (
                         <li
                             key={content.label}
-                            className={`${useMatch(content.to) ? 'active': ''}${content?.hasWarning ? 'warning' : ''}`}
+                            className={`${useMatch(content.to) ? 'active': ''}${content?.hasWarning ? ' warning' : ''}`}
                         >
                             <a href={content.to}>{content.label}</a>
                         </li>

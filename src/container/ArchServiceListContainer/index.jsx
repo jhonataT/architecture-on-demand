@@ -1,31 +1,64 @@
 import { useEffect, useState } from "react";
 import { ArchServiceListScreen } from "../../screens/ArchServiceListScreen";
-import { useLoggedUser } from "../../core/hooks/useLoggedUser";
-import { Api } from "../../core/services/api";
-import { customToast } from "../../components/Toast";
+import { useWork } from "../../core/hooks/useWork";
 
 export const ArchServiceListContainer = () => {
-    const { loggedUser, token } = useLoggedUser();
     const [reload, setReload] = useState(true);
     const [availableServices, setAvailableServices] = useState([]);
+    const [selectedWorkValues, setSelectedWorkValues] = useState(null);
+    const [isActionModalOpen, setIsActionModalOpen] = useState(false);
+    const [isFormModalOpen, setIsFormModalOpen] = useState(false);
+    const { getWaiting: getWaitingWorks, updateStatus } = useWork(selectedWorkValues);
 
     useEffect(() => {
         if(reload) {
-            Api(token).get(`/work-requests/architect/${loggedUser?.id}`)
-            .then(response => {
-                if(response.data) {
-                    setAvailableServices(response.data);
-                    setReload(false);
-                } else {
-                    throw new Error('Erro ao buscar dados')
-                }
-            })
-            .catch(error => {
-                customToast(`Erro ao buscar dados: ${error.message}`, 'error');
+            getWaitingWorks()
+            .then(result => {
+                setAvailableServices(result);
                 setReload(false);
             })
         }
     }, [reload]);
 
-    return <ArchServiceListScreen data={availableServices} />
+    const handleOpenWorkForm = () => {
+        setIsFormModalOpen(true);
+        setIsActionModalOpen(false);
+    }
+
+    const handleCloseNewWorkForm = () => {
+        setIsFormModalOpen(false);
+        setSelectedWorkValues(null);
+    }
+
+    const handleCloseActionModal = () => {
+        setIsActionModalOpen(false);
+        setSelectedWorkValues(null);
+    }
+
+    const handleOpenActionModal = (newSelectedWorkValues) => {
+        setSelectedWorkValues(newSelectedWorkValues);
+        setIsActionModalOpen(true);
+    }
+
+    const handleAcceptOrRefuseWork = async (newStatus = 'Accepted') => { // newStatus = 'Waiting' | 'Accepted' | 'Refused';
+        await updateStatus(newStatus);
+
+        newStatus === 'Accepted' ? 
+            setIsFormModalOpen(false) :
+            setIsActionModalOpen(false);
+
+        setReload(true);
+    }
+
+    return <ArchServiceListScreen {...{
+        availableServices,
+        selectedWorkValues,
+        handleOpenWorkForm,
+        handleCloseNewWorkForm,
+        handleCloseActionModal,
+        handleOpenActionModal,
+        handleAcceptOrRefuseWork,
+        isFormModalOpen,
+        isActionModalOpen
+    }} />
 }

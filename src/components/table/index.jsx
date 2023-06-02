@@ -1,5 +1,7 @@
 import GridTable from '@nadavshaar/react-grid-table';
+import { useTranslate } from '../../core/hooks/useTranslate';
 import './styles.scss';
+import { EmptyData } from '../EmptyData';
 
 const props = {
     search: 'Buscar:',
@@ -26,10 +28,12 @@ export const Table = ({ data, title, handleClickActions }) => {
     }
     
     const getColumns = (data) => {
-        const columsByKeys = Object.keys(data[0]).map((labelColumn, id) => ({
+        const columsByKeys = Object.keys(data[0])
+        .filter(item => item !== 'id' && item !== 'updatedAt' && item !== 'deletedAt')
+        .map((labelColumn, id) => ({
             id,
             field: labelColumn,
-            label: labelColumn,
+            label: useTranslate(labelColumn),
             width: '190px'
         }))
         
@@ -46,19 +50,21 @@ export const Table = ({ data, title, handleClickActions }) => {
     }
 
     return <div className='table__container'>
-        <header>
-            <h1>{title}</h1>
-        </header>
-        <div className='table__content'>
-            {
-                (data && data.length) ? (
+    {
+        (data && data.length) ? (
+            <>
+                <header>
+                    <h1>{title}</h1>
+                </header>
+                <div className='table__content'>
                     <GridTable
                         texts={props}
                         columns={(data && data.length) ? getColumns(data) : []}
                         rows={data}
                     />
-                ) : <></>
-            }
-        </div>
+                </div>
+            </>
+        ) : <EmptyData/>
+    }
     </div>
 }

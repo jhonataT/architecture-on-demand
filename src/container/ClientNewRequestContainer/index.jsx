@@ -4,8 +4,10 @@ import { useLoggedUser } from '../../core/hooks/useLoggedUser';
 import { Api } from '../../core/services/api';
 import { workRequestForm } from '../../core/utils/validation/workRequestForm';
 import { customToast } from '../../components/Toast';
+import { useWork } from '../../core/hooks/useWork';
 
 export const ClientNewRequestContainer = () => {
+    const { saveNewWork } = useWork();
     const { token, loggedUser } = useLoggedUser();
     const [reload, setReload] = useState(true);
     const [isActionModalOpen, setIsActionModalOpen] = useState(false);
@@ -70,29 +72,9 @@ export const ClientNewRequestContainer = () => {
             return;
         }
 
-        try {
-            const response = await Api(token).post('/work-requests', newWorkValues)
-            
-            if(response.data && response.data?.id) {
-                customToast('Serviço solicitado, aguardando resposta do arquiteto.', 'success');
-                setIsFormModalOpen(false);
-                setNewWorkValues({ ...newWorkValues, description: null});
-            } else {
-                throw new Error('Erro ao solicitar novo serviço');
-            }
-
-        } catch(error) {
-            let responseMessage;
-
-            responseMessage = Array.isArray(error.response?.data?.message[0]) ?
-                error.response?.data?.message[0] :
-                error.response?.data?.message;
-
-            responseMessage = responseMessage || error?.message;
-
-            customToast(`Erro ao solicitar serviço: ${responseMessage}`, 'error')
-            console.log("Erro ao solicitar serviço", { error })
-        }
+        await saveNewWork(newWorkValues);
+        setIsFormModalOpen(false);
+        setNewWorkValues({ ...newWorkValues, description: null});
     }
 
     return <ClientNewRequestScreen {...{

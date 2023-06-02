@@ -1,4 +1,5 @@
 import { ArchExcludedListContainer } from "../container/ArchExcludedListContainer";
+import { ArchNewServicesContainer } from "../container/ArchNewServicesContainer";
 import { ArchRefusedListContainer } from "../container/ArchRefusedListContainer";
 import { ArchServiceListContainer } from "../container/ArchServiceListContainer";
 import { ClientNewRequestContainer } from "../container/ClientNewRequestContainer";
@@ -8,7 +9,7 @@ import { NotFoundScreen } from "../screens/NotFoundScreen";
 export const userRoutes = [
     {
         path: '*',
-        component: () => <NotFoundScreen />
+        component: () => <NotFoundScreen /> // 
     },
     {
         path: '/architect/list',
@@ -18,7 +19,7 @@ export const userRoutes = [
     {
         path: '/architect/services',
         access: ['ACHITECT'],
-        component: () => <ArchServiceListContainer />
+        component: () => <ArchNewServicesContainer />
     },
     {
         path: '/architect/services/refused',
