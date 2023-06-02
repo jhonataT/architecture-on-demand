@@ -1,5 +1,6 @@
 import { customToast } from "../../components/Toast"
 import { Api } from "../services/api"
+import { useDate } from "./useDate"
 import { useLoggedUser } from "./useLoggedUser"
 import { useTranslate } from "./useTranslate"
 
@@ -13,9 +14,11 @@ export const useWork = (selectedWork) => {
                 const formattedData = response.data.map(item => ({
                     ...item,
                     client: item.client?.email,
-                    architect: item.architect?.email
+                    architect: item.architect?.email,
+                    status: useTranslate(item.status),
+                    createdAt: useDate(item.createdAt)
                 }));
-    
+
                 return formattedData;
             } else {
                 throw new Error('Erro ao buscar dados')
@@ -34,7 +37,8 @@ export const useWork = (selectedWork) => {
                     ...item,
                     architect: item.architect?.email,
                     client: item.client?.email,
-                    status: useTranslate(item.status)
+                    status: useTranslate(item.status),
+                    createdAt: useDate(item.createdAt)
                 }));
 
                 return formattedData;
@@ -55,7 +59,8 @@ export const useWork = (selectedWork) => {
                     ...item,
                     architect: item.architect?.email,
                     client: item.client?.email,
-                    status: useTranslate(item.status)
+                    status: useTranslate(item.status),
+                    createdAt: useDate(item.createdAt)
                 }));
 
                 return formattedData;
@@ -75,7 +80,8 @@ export const useWork = (selectedWork) => {
                     ...item,
                     architect: item.architect?.email,
                     client: item.client?.email,
-                    status: useTranslate(item.status)
+                    status: useTranslate(item.status),
+                    createdAt: useDate(item.createdAt)
                 }));
 
                 return formattedData;
@@ -95,7 +101,8 @@ export const useWork = (selectedWork) => {
                     ...item,
                     architect: item.architect?.email,
                     client: item.client?.email,
-                    status: useTranslate(item.status)
+                    status: useTranslate(item.status),
+                    createdAt: useDate(item.createdAt)
                 }));
     
                 return formattedData;
@@ -129,6 +136,35 @@ export const useWork = (selectedWork) => {
 
             customToast(`Erro ao solicitar serviço: ${responseMessage}`, 'error')
             console.log("Erro ao solicitar serviço", { error })
+        }
+    }
+
+    const updateWork = async (data) => {
+        try {
+            const response = await Api(token).put(`/work-requests/${selectedWork.id}`, data);
+
+            // Caso o retorno esteja ok:
+            if(response.data && response.data?.id) {
+                customToast(`Serviço atualizado.`, 'success');
+                
+                return response.data;
+            } else {
+                // Caso o retorno não seja de acordo com o retorno de sucesso:
+                throw new Error(`Erro ao atualizar serviço`);
+            }
+
+        } catch(error) {
+            let responseMessage;
+
+            responseMessage = Array.isArray(error.response?.data?.message[0]) ?
+                error.response?.data?.message[0] :
+                error.response?.data?.message;
+
+            responseMessage = responseMessage || error?.message;
+
+            // feedback de erro para o usuário/desenvolvedor
+            customToast(`Erro ao atualizar serviço: ${responseMessage}`, 'error')
+            console.log('Erro ao atualizar serviço', { error })
         }
     }
 
@@ -222,6 +258,7 @@ export const useWork = (selectedWork) => {
         getAllByClient,
         deleteWork,
         saveNewWork,
-        updateStatus
+        updateStatus,
+        updateWork
     }
 }

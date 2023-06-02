@@ -8,7 +8,8 @@ export const ClientRequestListContainer = () => {
     const [isActionModalOpen, setIsActionModalOpen] = useState(false);
     const [isFormModalOpen, setIsFormModalOpen] = useState(false);
     const [clientWorks, setClientWorks] = useState([]);
-    const { deleteWork, getAllByClient } = useWork(selectedWorkValues);
+    const [workValuesToUpdate, setWorkValuesToUpdate] = useState();
+    const { deleteWork, getAllByClient, updateWork } = useWork(selectedWorkValues);
 
     useEffect(() => {
         if(reload) {
@@ -19,6 +20,13 @@ export const ClientRequestListContainer = () => {
             })
         }
     }, [reload]);
+
+    const handleInputChange = (name, event) => {
+        setWorkValuesToUpdate({
+            ...workValuesToUpdate,
+            [name]: event.target.value
+        });
+    }
 
     const handleOpenWorkForm = () => {
         setIsFormModalOpen(true);
@@ -40,6 +48,12 @@ export const ClientRequestListContainer = () => {
         setIsActionModalOpen(true);
     }
 
+    const handleUpdateWork = async () => {
+        await updateWork(workValuesToUpdate);
+        handleCloseNewWorkForm();
+        setReload(true);
+    }
+
     const handleDeleteWork = async () => {
         await deleteWork();
         handleCloseActionModal();
@@ -53,9 +67,12 @@ export const ClientRequestListContainer = () => {
             handleOpenWorkForm,
             handleDeleteWork,
             handleDeleteWork,
+            handleInputChange,
             isActionModalOpen,
             clientWorks,
             isFormModalOpen,
+            handleUpdateWork,
+            workValuesToUpdate,
             selectedWorkValues
         }}
     />

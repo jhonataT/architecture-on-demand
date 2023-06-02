@@ -5,6 +5,8 @@ import { Api } from '../../core/services/api';
 import { workRequestForm } from '../../core/utils/validation/workRequestForm';
 import { customToast } from '../../components/Toast';
 import { useWork } from '../../core/hooks/useWork';
+import { useTranslate } from '../../core/hooks/useTranslate';
+import { useDate } from '../../core/hooks/useDate';
 
 export const ClientNewRequestContainer = () => {
     const { saveNewWork } = useWork();
@@ -25,7 +27,14 @@ export const ClientNewRequestContainer = () => {
             Api(token).get('/users/architects')
             .then(response => {
                 if(response.data) {
-                    setAvailableArchitects(response.data);
+                    const formattedData = response.data.map(item => ({
+                        ...item,
+                        role: useTranslate(item.role),
+                        isActive: useTranslate(item.isActive.toString()),
+                        createdAt: useDate(item.createdAt)
+                    }))
+
+                    setAvailableArchitects(formattedData);
                     setReload(false);
                 } else {
                     throw new Error('Erro ao buscar dados')

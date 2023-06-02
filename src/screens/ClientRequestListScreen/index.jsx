@@ -13,7 +13,10 @@ export const ClientRequestListScreen = ({
     handleCloseNewWorkForm,
     handleOpenWorkForm,
     handleDeleteWork,
+    handleUpdateWork,
+    handleInputChange,
     isFormModalOpen,
+    workValuesToUpdate,
     isActionModalOpen,
     selectedWorkValues
 }) => {
@@ -26,19 +29,19 @@ export const ClientRequestListScreen = ({
         <WorkFormModal
             isOpen={isFormModalOpen}
             handleClose={handleCloseNewWorkForm}
-            handleSuccess={() => {}}
+            handleSuccess={handleUpdateWork}
             architect={selectedWorkValues?.architect}
             client={selectedWorkValues?.client}
-            description={selectedWorkValues?.description}
-            isNewRequest={false}
-            disabledSuccessButton
+            description={workValuesToUpdate?.description || selectedWorkValues?.description}
+            handleInputChange={handleInputChange}
+            isEdit
         />
         <ActionsModal isOpen={isActionModalOpen} handleClose={handleCloseActionModal}>
             <div className='actions-container'>
                 <h1>Ações</h1>
                 <div className='button-group__container'>
                     <ActionButton
-                        label='Ver Detalhes da solicitação'
+                        label='Ver ou editar solicitação'
                         Icon={HiDocument}
                         handleClick={handleOpenWorkForm}
                     />

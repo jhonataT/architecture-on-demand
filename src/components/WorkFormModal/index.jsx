@@ -7,6 +7,7 @@ import './styles.scss';
 
 export const WorkFormModal = ({
     isNewRequest = true,
+    isEdit,
     disabledSuccessButton = false,
     isOpen,
     handleClose,
@@ -23,7 +24,7 @@ export const WorkFormModal = ({
         style={{ overlay: { background: "#7f8ca089" }}}
         className='new-work-modal__container'
     >
-        <h1>{isNewRequest ? 'Solicitar novo serviço' : 'Detalhes do serviço'}</h1>
+        <h1>{isEdit ? 'Editar Serviço' : isNewRequest ? 'Solicitar novo serviço' : 'Detalhes do serviço'}</h1>
         <div className='modal__content'>
             <form>
                 <Input
