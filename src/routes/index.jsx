@@ -4,41 +4,41 @@ import { ArchRefusedListContainer } from "../container/ArchRefusedListContainer"
 import { ArchServiceListContainer } from "../container/ArchServiceListContainer";
 import { ClientNewRequestContainer } from "../container/ClientNewRequestContainer";
 import { ClientRequestListContainer } from "../container/ClientRequestListContainer";
+import { NotFoundScreen } from "../screens/NotFoundScreen";
 
 export const userRoutes = [
     {
-        path: '/',
-        access: ['USER_ARCHITECT'],
-        component: () => <ArchServiceListContainer />
+        path: '*',
+        component: () => <NotFoundScreen /> // 
     },
     {
-        path: '/architect/services/new',
-        access: ['USER_ARCHITECT'],
-        component: () => <ArchNewServicesContainer />
+        path: '/architect/list',
+        access: ['ACHITECT'],
+        component: () => <ArchServiceListContainer />
     },
     {
         path: '/architect/services',
-        access: ['USER_ARCHITECT'],
-        component: () => <ArchServiceListContainer />
+        access: ['ACHITECT'],
+        component: () => <ArchNewServicesContainer />
     },
     {
         path: '/architect/services/refused',
-        access: ['USER_ARCHITECT'],
+        access: ['ACHITECT'],
         component: () => <ArchRefusedListContainer />
     },
     {
         path: '/architect/services/excluded',
-        access: ['USER_ARCHITECT'],
+        access: ['ACHITECT'],
         component: () => <ArchExcludedListContainer />
     },
     {
-        path: '/client/architects',
-        access: ['USER_CLIENT'],
+        path: '/client',
+        access: ['CLIENT'],
         component: () => <ClientNewRequestContainer />
     },
     {
         path: '/client/requests',
-        access: ['USER_CLIENT'],
+        access: ['CLIENT'],
         component: () => <ClientRequestListContainer />
     },
 ];

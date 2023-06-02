@@ -1,0 +1,40 @@
+.register__container {
+    height: 100%;
+    width: 100%;
+
+    position: relative;
+    z-index: 0;
+
+    .user-type-button__container {
+        width: 20rem;
+
+        display: flex;
+        gap: .25rem;
+
+        margin-bottom: 1rem;
+
+        button {
+            width: 100%;
+            height: 2.5rem;
+
+            border: 0;
+
+            font-size: 0.875rem;
+            color: var(--white-900);
+
+            background-color: var(--green-100);
+            border: 1px solid var(--green-500);
+            border-radius: var(--radius-md);
+
+            transition: background-color .2s;
+
+            &.selected {
+                background-color: var(--green-300);
+            }
+
+            &:hover {
+                background-color: var(--green-300);
+            }
+        }
+    }
+}

@@ -1,11 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
 import { userRoutes } from "./routes";
 import { PrivateRouter } from "./routes/privateRoutes";
 import { LoginContainer } from "./container/LoginContainer";
+import { RegistrationContainer } from "./container/RegistrationContainer";
+import { ReduxProvider } from "./core/redux";
+import "!style-loader!css-loader!react-toastify/dist/ReactToastify.css"
 import './styles/global.scss';
 
 export const App = () => {
-    return <>
+    return <ReduxProvider>
+        <ToastContainer />
         <Router history={History}>
             <Routes>
                 <Route>
@@ -23,7 +28,8 @@ export const App = () => {
                     ))}
                 </Route>
                 <Route path="/authentication/login" element={<LoginContainer />} />
+                <Route path="/authentication/register" element={<RegistrationContainer />} />
             </Routes>
         </Router>
-    </>
+    </ReduxProvider>
 }

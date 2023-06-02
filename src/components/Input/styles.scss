@@ -1,0 +1,35 @@
+.input__container {
+    display: flex;
+    flex-direction: column;
+
+    small {
+        font-size: 0.875rem;
+    }
+
+    input {
+        width: 20rem;
+        height: 2.5rem;
+
+        background-color: var(--white-100);
+
+        border-radius: var(--radius-md);
+        border: 0;
+        border-bottom: 2px solid var(--green-500);
+
+        padding: 0 .5rem;
+
+        font-size: .75rem;
+        font-weight: 400;
+        color: var(--white-900);
+
+        &.disabled {
+            cursor: not-allowed;
+            filter: brightness(.75);
+        }
+
+        &::placeholder {
+            font-size: .75rem;
+            color: var(--white-400);
+        }
+    }
+}

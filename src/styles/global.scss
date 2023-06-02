@@ -6,11 +6,20 @@
 
 :root {
     --white-100: rgba(255, 255, 255, .05);
+    --white-400: rgba(255, 255, 255, .45);
     --white-900: #ffffff;
 
     --orange-700: #f37055;
+
     --blue-200: #7f8ca0;
+    --blue-400: #6e87bb;
+    --blue-500: #5073b8;
+    --blue-700: #1c2130;
     --blue-900: #171b27;
+
+    --green-100: #0f9c7218;
+    --green-300: #0f9c726e;
+    --green-500: #0f9c72;
 
     --radius-md: 0.375rem;
 }
@@ -28,8 +37,10 @@
 }
 
 body {
-    width: 100vh;
+    width: 100vw;
     height: 100vh;
+
+    overflow-x: hidden;
 
     background-color: var(--blue-900);
 
