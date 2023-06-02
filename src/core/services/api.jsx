@@ -1,4 +1,3 @@
-import React from 'react';
 import axios from 'axios';
 
 export const Api = (token = null) => {
@@ -8,7 +7,7 @@ export const Api = (token = null) => {
     };
     
     return axios.create({
-        baseURL: `http://localhost:3000`,
+        baseURL: "http://68.183.127.52:3000",
         headers: token ? headers : {}
     });
 }

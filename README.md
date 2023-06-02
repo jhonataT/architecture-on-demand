@@ -38,14 +38,3 @@ Antes de executar, certifique-se de ter o seguinte instalado:
     ```
 
 5.  A API estará disponível em http://localhost:3001.
-
-## Como executar os testes
-
-> Siga as etapas abaixo para executar os testes unitários em um ambiente de desenvolvimento.
-
-1. Com a Api já instalada e configurada, rode o comando:
-	
-    **bash:**
-	```bash
-    > yarn run test
-    ``` 
